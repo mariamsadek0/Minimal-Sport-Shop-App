@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_sport_shop_app/features/auth/login_screen.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -160,18 +161,27 @@ class ProfileMenuWidget extends StatelessWidget {
           _menuTile(Icons.favorite_border, "Favorites"),
           _menuTile(Icons.payment_outlined, "Payment Methods"),
           _menuTile(Icons.help_outline, "Help Center"),
-          _menuTile(Icons.logout, "Logout"),
+          _menuTile(
+            Icons.logout,
+            "Logout",
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            },
+          ),
         ],
       ),
     );
   }
 
-  Widget _menuTile(IconData icon, String title) {
+  Widget _menuTile(IconData icon, String title, {VoidCallback? onTap}) {
     return ListTile(
       leading: Icon(icon, color: Colors.blue),
       title: Text(title),
       trailing: const Icon(Icons.arrow_forward_ios, size: 18),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 }
